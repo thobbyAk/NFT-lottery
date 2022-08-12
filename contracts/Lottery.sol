@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "./RandomNumberGenerator.sol";
+import "./LotteryNft.sol";
 
 contract Lottery is Ownable {
     using EnumerableSet for EnumerableSet.AddressSet;
@@ -88,6 +89,7 @@ contract Lottery is Ownable {
         numbers.push(_number);
         numberOfEntries++;
         payable(owner()).transfer(ownerCut);
+        mintToken();
         emit NewEntry(msg.sender, _number);
     }
 
